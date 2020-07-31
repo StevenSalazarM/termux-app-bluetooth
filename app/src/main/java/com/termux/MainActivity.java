@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.termux.api.BluetoothAPI;
 import com.termux.api.ToastAPI;
 import com.termux.app.TermuxActivity;
 
@@ -104,6 +105,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
         TermuxActivity.first_activity_options=false;
+        BluetoothAPI.bluetoothStopScanning();
         super.onDestroy();
     }
 }

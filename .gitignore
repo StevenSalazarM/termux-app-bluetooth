@@ -25,6 +25,7 @@ local.properties
 # User-specific configurations
 .idea/
 *.iml
+.svn/
 
 # OS-specific files
 .DS_Store
