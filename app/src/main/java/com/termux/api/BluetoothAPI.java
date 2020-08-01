@@ -22,7 +22,7 @@ public class BluetoothAPI {
     private static boolean scanning = false;
     private static Set<String> deviceList = new HashSet<String>();
     public static boolean unregistered = true;
-
+    public static BluetoothAdapter mBluetoothAdapter;
     // Create a BroadcastReceiver for ACTION_FOUND.
     private static BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
@@ -31,12 +31,14 @@ public class BluetoothAPI {
                 // Discovery has found a device. Get the BluetoothDevice
                 // object and its info from the Intent.
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String deviceName = device.getName();
-                // you can get more info from device here
-                // ...
+                if (device != null) {
+                    String deviceName = device.getName();
+                    // you can get more info from device here
+                    // ...
 
-                if(!deviceName.equals("null") && !deviceName.trim().equals("")) {
-                    deviceList.add(deviceName);
+                    if (deviceName != null && !deviceName.equals("null") && !deviceName.trim().equals("")) {
+                        deviceList.add(deviceName);
+                    }
                 }
             }
         }
@@ -46,15 +48,16 @@ public class BluetoothAPI {
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         MainActivity.activity.getBaseContext().registerReceiver(mReceiver, filter);
         unregistered = false;
-        final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mBluetoothAdapter.startDiscovery();
     }
     public static void bluetoothStopScanning(){
         if(!unregistered) {
+            mBluetoothAdapter.cancelDiscovery();
             MainActivity.activity.getBaseContext().unregisterReceiver(mReceiver);
             unregistered=true;
         }
-        }
+    }
 
     static void onReceiveBluetoothScanInfo(TermuxApiReceiver apiReceiver, final Context context, final Intent intent) {
         ResultReturner.returnData(apiReceiver, intent, new ResultReturner.ResultJsonWriter() {
@@ -105,7 +108,7 @@ public class BluetoothAPI {
 
                         writer.beginObject().name("message:").value("invalid input").endObject();
                     }else
-                    	writer.beginObject().name("message:").value("BluetoothConnect to be implemented, it should connect to " + inputString).endObject();
+                        writer.beginObject().name("message:").value("BluetoothConnect to be implemented, it should connect to " + inputString).endObject();
                     out.println(); // To add trailing newline.
                 }catch(Exception e){
                     Log.d("Except BluetoothConnect", e.getMessage());
