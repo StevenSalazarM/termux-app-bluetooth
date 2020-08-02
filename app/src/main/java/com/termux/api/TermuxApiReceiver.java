@@ -47,12 +47,12 @@ public class TermuxApiReceiver extends BroadcastReceiver {
                 break;
             case "BluetoothScanInfo":
                 if (TermuxApiPermissionActivity.checkAndRequestPermissions(context, intent, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    BluetoothAPI.onReceiveBluetoothScanInfo(this, context, intent);
+                    BluetoothLowEnergyAPI.onReceiveBluetoothScanInfo(this, context, intent);
                 }
                 break;
             case "BluetoothConnect":
                 if (TermuxApiPermissionActivity.checkAndRequestPermissions(context, intent, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    BluetoothAPI.onReceiveBluetoothConnect(this, context, intent);
+                    BluetoothLowEnergyAPI.onReceiveBluetoothConnect(this, context, intent);
                 }
                 break;
             case "CameraInfo":

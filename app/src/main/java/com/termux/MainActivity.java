@@ -105,7 +105,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
         TermuxActivity.first_activity_options=false;
-        BluetoothAPI.bluetoothStopScanning();
+        //BluetoothAPI.bluetoothStopScanning();
         super.onDestroy();
     }
 }

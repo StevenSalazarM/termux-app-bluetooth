@@ -23,6 +23,7 @@ public class BluetoothAPI {
     private static Set<String> deviceList = new HashSet<String>();
     public static boolean unregistered = true;
     public static BluetoothAdapter mBluetoothAdapter;
+
     // Create a BroadcastReceiver for ACTION_FOUND.
     private static BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
