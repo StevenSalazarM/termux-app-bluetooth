@@ -30,3 +30,9 @@ Terminal emulators
 * xterm: The grandfather of terminal emulators. [Source](http://invisible-island.net/datafiles/release/xterm.tar.gz).
 * Connectbot: Android SSH client. [Source](https://github.com/connectbot/connectbot)
 * Android Terminal Emulator: Android terminal app which Termux terminal handling is based on. Inactive. [Source](https://github.com/jackpal/Android-Terminal-Emulator).
+
+Additional Features
+==================
+This repository is maily an extesion of the Termux Project that allows the usage of bluetooth commands from console:
+* termux-bluetooth-scaninfo: The first time termux will ask for permissions if needed, the second time you type this command it will start the scanning of devices (BLE is also supported under the [dev-ble branch](https://github.com/StevenSalazarM/termux-app-bluetooth/tree/dev-ble), however it hasn't been merged due to the lack of LE devices for testing), the third time you type this command it will stop the scanner.
+* termux-bluetooth-connect: This command should allows to connect to a device, however it hasnt been implemented yet, feel free to insert your own code under the [BluetoothAPI](https://github.com/StevenSalazarM/termux-app-bluetooth/blob/master/app/src/main/java/com/termux/api/BluetoothAPI.java#L106).
